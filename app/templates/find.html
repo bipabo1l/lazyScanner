@@ -1,1 +1,29 @@
-{{info}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>title信息</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<table class="table  table-bordered">
+    <tbody>
+    <tr>
+        <th width="30">Url</th>
+        <th width="60">Title</th>
+    </tr>
+    </tbody>
+    <tbody>
+    {% for i in info %}
+        <tr target="sid_user" rel="10">
+            <td>
+                <a href="{{ i['url'] }}" title="网页链接" target="_blank">{{ i['url'] }}</a>
+            </td>
+            <td>{{ i['title'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

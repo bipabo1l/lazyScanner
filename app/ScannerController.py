@@ -13,8 +13,9 @@ def find():
     测试数据库查询
     :return: 
     """
-    obj_id = request.args.get('object_id')
-    print obj_id
-    info = db_connect.ip_info.find_one({"_id": ObjectId(obj_id)})
+    # obj_id = request.args.get('object_id')
+    # print obj_id
+    condition = {}
+    info = db_connect.ip_info.find(condition)
     print info
     return render_template('find.html', info=info)
