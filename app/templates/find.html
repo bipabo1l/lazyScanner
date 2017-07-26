@@ -8,22 +8,46 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+<div class="container">
 
-<table class="table  table-bordered">
-    <tbody>
-    <tr>
-        <th width="30">Url</th>
-        <th width="60">Title</th>
-    </tr>
-    </tbody>
-    <tbody>
-    {% for i in info %}
-        <tr target="sid_user" rel="10">
-            <td>
-                <a href="{{ i['url'] }}" title="网页链接" target="_blank">{{ i['url'] }}</a>
-            </td>
-            <td>{{ i['title'] }}</td>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>网段<span style="color: #337ab7">Title/FingerPrint</span>扫描</h2>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="/">扫描结果页面</a>
+        </li>
+        <li>
+            <a href="/newScanTask">新建扫描任务</a>
+        </li>
+    </ul>
+    <table class="table  table-bordered">
+        <tbody>
+        <tr>
+            <th width="30">Url</th>
+            <th width="60">Title</th>
+            <th width="60">Fingerprint</th>
+            <th width="60">CTime</th>
+            <th width="60">IP_range</th>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+        <tbody>
+        {% for i in info %}
+            <tr target="sid_user" rel="10">
+                <td>
+                    <a href="{{ i['url'] }}" title="网页链接" target="_blank">{{ i['url'] }}</a>
+                </td>
+                <td>{{ i['title'] }}</td>
+                <td>{{ i['fingerprint'] }}</td>
+                <td>{{ i['create_time'] }}</td>
+                <td>{{ i['ip_range'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>title信息</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h2>网段<span style="color: #337ab7">Title/FingerPrint</span>扫描</h2>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="/">扫描结果页面</a>
+        </li>
+        <li class="active">
+            <a href="/newScanTask">新建扫描任务</a>
+        </li>
+    </ul>
+    <table class="table  table-bordered">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <form id="myForm">
+                    <p>
+                        <label for="info"></label><textarea id="info" maxlength="100" class="form-control"
+                                                                   rows="3"></textarea>
+                    <div style="text-align:right" id="show">您已输入<i>0</i>/100个字</div>
+                    </p>
+                    <input type="hidden" id="erp" name="erp" value={{ erp }}>
+                    <input type="hidden" id="fullname" name="fullname" value="{{ username }}">
+
+                    <div class="form-group">
+                        <p>
+                            <button style="float:right" type="button" class="btn btn-default " id="button1">提交</button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </table>
+</div>
