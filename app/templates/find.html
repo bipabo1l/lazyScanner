@@ -43,7 +43,15 @@
                     <a href="{{ i['url'] }}" title="网页链接" target="_blank">{{ i['url'] }}</a>
                 </td>
                 <td>{{ i['title'] }}</td>
-                <td>{{ i['fingerprint'] }}</td>
+                <td>
+                    {% if i['fingerprint'] == 	[] %}Null
+                    {% else %}  {% for k in i['fingerprint'] %}
+                        <span style="color: gray">{{ k.split(':')[0] }}</span>:
+                        <span style="color: #337ab7">{{ k.split(':')[1] }}
+                        <br>
+                    {% endfor %}
+                    {% endif %}
+                </td>
                 <td>{{ i['create_time'] }}</td>
                 <td>{{ i['ip_range'] }}</td>
             </tr>
