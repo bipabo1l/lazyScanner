@@ -1,6 +1,8 @@
 # coding=utf-8
 import time
 import urllib2
+
+import math
 from bson import ObjectId
 from flask import render_template, request, json, url_for, session, redirect
 from app import app, db_connect, sys_config
@@ -27,9 +29,31 @@ def find():
     查询结果展示页面
     :return: 
     """
+    currentPage = request.args.get('page', 1)
+    currentPage = int(currentPage)
     condition = {}
-    info = db_connect.ip_info.find(condition)
-    print info
+    params = {}
+    numPerPage = 10  # 每页显示100条
+    pageNumShown = 10  # 最多显示10个页码
+
+    if request.method == 'POST':
+        params = request.form
+        ip_range = request.form.get('ip_range', None)
+        if ip_range and ip_range != '':
+            condition['ip_range'] = ip_range
+
+            # 分页
+    if currentPage < 1:
+        currentPage = 1
+
+    offsetPage = (int(currentPage) - 1) * numPerPage
+    model = db_connect.ip_info.find(condition)
+    totalCount = model.count()
+    page_num = int(math.ceil(totalCount / numPerPage))
+    items = model.skip(offsetPage).limit(numPerPage)
+    info = {"items": items, "totalCount": totalCount, "currentPage": currentPage, "numPerPage": numPerPage,
+            "pageNumShown": pageNumShown,
+            "params": params, "page_num": page_num}
     return render_template('find.html', info=info)
 
 @app.route('/newScanTask', methods=['GET', 'POST'])

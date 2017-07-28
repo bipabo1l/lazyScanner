@@ -1,3 +1,7 @@
+<form id="pagerForm" method="post" action="#rel#">
+    <input type="hidden" name="pageNum" value="{{ info['pageNum'] }}"/>
+    <input type="hidden" name="numPerPage" value="{{ info['numPerPage'] }}"/>
+</form>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,34 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="/" method="post">
+        <div class="searchBar">
+            <ul class="searchContent">
+
+                <li>
+                    <label>IP：</label>
+                    <input type="text" name="ip_range" value="{{ info['params'].get("ip_range","") }}"/>
+                </li>
+
+            </ul>
+            <div class="subBar">
+                <ul>
+                    <li>
+                        <div class="buttonActive">
+                            <div class="buttonContent">
+                                <button type="submit">检索</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+
 <div class="container">
 
     <div class="row">
@@ -40,7 +72,7 @@
         </tr>
         </tbody>
         <tbody>
-        {% for i in info %}
+        {% for i in info['items'] %}
             <tr target="sid_user" rel="10">
                 <td>
                     <a href="{{ i['url'] }}" title="网页链接" target="_blank">{{ i['url'] }}</a>
@@ -61,4 +93,22 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>共{{ info['totalCount'] }}条</span>
+        </div>
+    </div>
+    <ul class="pagination pagination-right">
+
+        <li>{% if info['currentPage'] > 1 %}
+            <a href="/scanner/find?page={{ info['currentPage'] - 1 }}">上一页 «</a>
+        {% endif %}</li>
+
+        <li class="active"><a href="/scanner/find?page={{ info['currentPage'] }}">{{ info['currentPage'] }}</a>
+        </li>
+
+        <li>{% if info['currentPage'] < info['page_num'] %}
+            <a href="/scanner/find?page={{ info['currentPage'] + 1 }}">下一页 »</a>{% endif %}</li>
+    </ul>
 </div>
