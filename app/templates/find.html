@@ -108,6 +108,27 @@
         <li class="active"><a href="/scanner/find?page={{ info['currentPage'] }}">{{ info['currentPage'] }}</a>
         </li>
 
+        <li>{% if info['currentPage'] >= 1 and  (info['currentPage'] + 1) < info['page_num'] %}
+            <a href="/scanner/find?page={{ info['currentPage'] + 1 }}">{{ info['currentPage'] + 1 }}</a>
+        {% endif %}</li>
+
+        <li>{% if info['currentPage'] >= 1 and  (info['currentPage'] + 2) < info['page_num'] %}
+            <a href="/scanner/find?page={{ info['currentPage'] + 2 }}">{{ info['currentPage'] + 2 }}</a>
+        {% endif %}</li>
+
+        <li>{% if info['currentPage'] < info['page_num'] and (info['page_num'] - info['currentPage']) > 4 %}
+            <a href="">...</a>
+        {% endif %}</li>
+
+        <li>
+            {% if info['currentPage'] >= 1 and  info['currentPage'] < info['page_num'] %}
+                <a href="/scanner/find?page={{ info['page_num'] }}">{{ info['page_num'] }}
+                </a>
+            {% elif info['currentPage'] >= 1 and  info['currentPage'] < info['page_num'] %}
+                <a href="/scanner/find?page={{ info['page_num'] }}">{{ info['page_num'] }}
+                </a>
+            {% endif %}</li>
+
         <li>{% if info['currentPage'] < info['page_num'] %}
             <a href="/scanner/find?page={{ info['currentPage'] + 1 }}">下一页 »</a>{% endif %}</li>
     </ul>
