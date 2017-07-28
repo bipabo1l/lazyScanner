@@ -57,7 +57,8 @@ class WebEye(Greenlet):
 
     def read_config(self):
         mark_list = []
-        config_file = open('config.txt', 'r')
+        print os.getcwd()
+        config_file = open('/app/config.txt', 'r')
         for mark in config_file:
             # remove comment, group, blank line
             if re.match("\[.*?\]|^;", mark) or not mark.split():

@@ -13,6 +13,8 @@ import time
 
 ISOTIMEFORMAT = "%Y-%m-%d %X"
 port_range = [80,8080,8088,8888,8000 ]
+int_ip = lambda x: '.'.join([str(x/(256**i)%256) for i in range(3,-1,-1)])
+ip_int = lambda x:sum([256**j*int(i) for j,i in enumerate(x.split('.')[::-1])])
 
 def get_IP():
     pass
@@ -25,6 +27,15 @@ def get_IP():
                 pass
             else:
                 ip_range.append(str(x))
+    return ip_range
+
+def get_ips(ip1,ip2):
+    ip_range = []
+    ip1_num = ip_int(ip1)
+    ip2_num = ip_int(ip2)
+    for i in range(ip1_num,ip2_num+1):
+        ip_range.append(int_ip(i))
+    print ip_range
     return ip_range
 
 def get_ip_range(s):

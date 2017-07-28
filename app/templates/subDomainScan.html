@@ -22,23 +22,22 @@
         <li>
             <a href="/">扫描结果页面</a>
         </li>
-        <li class="active">
+        <li>
             <a href="/newScanTask">新建扫描任务</a>
         </li>
-        <li>
+        <li class="active">
             <a href="/subDomainScan">子域名爆破</a>
         </li>
     </ul>
 
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div class="preview">提交表单</div>
+            <div class="preview">请填写域名</div>
             <div class="view">
                 <form>
                     <fieldset>
-                        <input type="text" id="ip1" placeholder="Type something…">
-                        <input type="text" id="ip2" placeholder="Type something…">
-                        <span class="help-block" contenteditable="true">这里填写帮助信息.</span>
+                        <input type="text" id="domain1"  placeholder="Type something…">
+                        <span class="help-block" contenteditable="true">如 <span style="color: #337ab7">qq.com</span></span>
                         <button type="submit" class="btn" contenteditable="true" id="button1">提交</button>
                     </fieldset>
                 </form>
@@ -51,23 +50,18 @@
 <script>
     $(function () {
         $("#button1").click(function () {
-            var ip1_val = $('#ip1').val();
-            var ip2_val = $('#ip2').val();
-            if (ip1_val.length == 0) {
+            var domain_val = $('#domain1').val();
+            if (domain_val.length == 0) {
                 alert("请填写ip1");
-            }
-            else if (ip2_val.length == 0) {
-                alert("请填写ip2");
             }
             else {
                 var data = {
-                    "ip1": ip1_val,
-                    "ip2": ip2_val
+                    "domain": domain_val
                 }
 
                 $.ajax({
                     type: "POST",
-                    url: "/do_scan",
+                    url: "/subDomainScan",
                     data: data,
                     dataType: "JSON",
                     success: function (result) {
